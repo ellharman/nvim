@@ -31,6 +31,8 @@ require("lazy").setup({
 		{ "gelguy/wilder.nvim" },
 		{ "nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 		{ "echasnovski/mini.nvim", version = "*" },
+		{ "nvim-telescope/telescope.nvim", tag = "0.1.8", dependencies = { "nvim-lua/plenary.nvim" } },
+		{ "nvim-treesitter/nvim-treesitter" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -44,6 +46,13 @@ vim.cmd("colorscheme dracula")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "number"
+vim.opt.mouse = ""
+
+-- Unbind arrow keys 
+vim.cmd("noremap <Left> <Nop>")
+vim.cmd("noremap <Right> <Nop>")
+vim.cmd("noremap <Up> <Nop>")
+vim.cmd("noremap <Down> <Nop>")
 
 -- Lualine config
 require("lualine").setup({
@@ -139,5 +148,3 @@ require("formatter").setup({
 	},
 })
 
--- Mini config
-require('mini.animate').setup();
