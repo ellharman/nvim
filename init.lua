@@ -33,6 +33,7 @@ require("lazy").setup({
 		{ "echasnovski/mini.nvim", version = "*" },
 		{ "nvim-telescope/telescope.nvim", tag = "0.1.8", dependencies = { "nvim-lua/plenary.nvim" } },
 		{ "nvim-treesitter/nvim-treesitter" },
+		{ "gaoDean/autolist.nvim" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -48,7 +49,7 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = "number"
 vim.opt.mouse = ""
 
--- Unbind arrow keys 
+-- Unbind arrow keys
 vim.cmd("noremap <Left> <Nop>")
 vim.cmd("noremap <Right> <Nop>")
 vim.cmd("noremap <Up> <Nop>")
@@ -57,7 +58,6 @@ vim.cmd("inoremap <Left> <Nop>")
 vim.cmd("inoremap <Right> <Nop>")
 vim.cmd("inoremap <Up> <Nop>")
 vim.cmd("inoremap <Down> <Nop>")
-
 
 -- Lualine config
 require("lualine").setup({
@@ -152,4 +152,17 @@ require("formatter").setup({
 		},
 	},
 })
+require("autolist").setup()
 
+vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
+vim.keymap.set("i", "<s-tab>", "<cmd>AutolistShiftTab<cr>")
+-- vim.keymap.set("i", "<c-t>", "<c-t><cmd>AutolistRecalculate<cr>") -- an example of using <c-t> to indent
+vim.keymap.set("i", "<CR>", "<CR><cmd>AutolistNewBullet<cr>")
+vim.keymap.set("n", "o", "o<cmd>AutolistNewBullet<cr>")
+vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
+vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
+vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
+vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
+vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
+vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
+vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
