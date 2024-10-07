@@ -34,6 +34,8 @@ require("lazy").setup({
 		{ "nvim-telescope/telescope.nvim", tag = "0.1.8", dependencies = { "nvim-lua/plenary.nvim" } },
 		{ "nvim-treesitter/nvim-treesitter" },
 		{ "gaoDean/autolist.nvim" },
+		{ "github/copilot.vim" },
+		{ "vhyrro/luarocks.nvim" },
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
@@ -152,6 +154,8 @@ require("formatter").setup({
 		},
 	},
 })
+
+-- Autolist setup
 require("autolist").setup()
 
 vim.keymap.set("i", "<tab>", "<cmd>AutolistTab<cr>")
@@ -166,3 +170,17 @@ vim.keymap.set("n", ">>", ">><cmd>AutolistRecalculate<cr>")
 vim.keymap.set("n", "<<", "<<<cmd>AutolistRecalculate<cr>")
 vim.keymap.set("n", "dd", "dd<cmd>AutolistRecalculate<cr>")
 vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
+
+-- Luarocks
+require("luarocks-nvim").setup()
+
+
+-- Orgmode
+require("neorg").setup()
+
+-- nvim-treesitter
+require("nvim-treesitter.configs").setup({
+  highlight = {
+    enable = true,
+  },
+})
