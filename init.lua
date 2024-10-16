@@ -41,7 +41,7 @@ require("lazy").setup({
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "dracula" } },
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = { enabled = false },
 })
 
 -- General config
@@ -144,6 +144,9 @@ require("formatter").setup({
 				}
 			end,
 		},
+		json = {
+			require("formatter.filetypes.json").jq,
+		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
@@ -174,13 +177,25 @@ vim.keymap.set("v", "d", "d<cmd>AutolistRecalculate<cr>")
 -- Luarocks
 require("luarocks-nvim").setup()
 
-
 -- Orgmode
-require("neorg").setup()
+require("neorg").setup({
+	load = {
+		["core.defaults"] = {},
+		["core.concealer"] = {},
+		["core.dirman"] = {
+			config = {
+				workspaces = {
+					notes = "~/notes",
+				},
+				default_workspace = "notes",
+			},
+		},
+	},
+})
 
 -- nvim-treesitter
 require("nvim-treesitter.configs").setup({
-  highlight = {
-    enable = true,
-  },
+	highlight = {
+		enable = true,
+	},
 })
